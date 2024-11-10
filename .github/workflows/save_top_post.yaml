@@ -31,5 +31,6 @@ jobs:
           user_agent : ${{ secrets.user_agent }}
           access_token: ${{ secrets.access_token }}
           pocket_consumer_key: ${{ secrets.pocket_consumer_key }}
+          subreddit_list: ${{ secrets.subreddit_list }}
         run: uv run top_post_reddit.py
 
