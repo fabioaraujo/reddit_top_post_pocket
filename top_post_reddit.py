@@ -70,16 +70,19 @@ reddit = praw.Reddit(client_id=client_id,
                      user_agent=user_agent)
 
 # Acessa o subreddit e busca posts populares
-subreddit = reddit.subreddit('todayilearned')
-post = next(subreddit.top(limit=1, time_filter="day"))  # Busca o post mais popular
+subreddit_list = os.getenv("subreddit_list").split(",")
 
-print(f"Título: {post.title}")
-print(f"Pontuação: {post.score}")
-print(f"URL: {post.url}")
-print(f"Post URL: https://www.reddit.com{post.permalink}")
-print("-" * 40)
+for channel in subreddit_list:
+    subreddit = reddit.subreddit(channel)
+    post = next(subreddit.top(limit=1, time_filter="day"))  # Busca o post mais popular
 
-# Envia a URL do post ao Pocket
-save_to_pocket(post.url, access_token)
-print("URL enviada ao Pocket com sucesso!")
+    print("-" * 40)
+    print(f"Título: {post.title}")
+    print(f"Pontuação: {post.score}")
+    print(f"URL: {post.url}")
+    print(f"Post URL: https://www.reddit.com{post.permalink}")
+    print("-" * 40)
 
+    # Envia a URL do post ao Pocket
+    save_to_pocket(f"https://www.reddit.com{post.permalink}", access_token)
+    print("URL enviada ao Pocket com sucesso!")
