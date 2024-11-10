@@ -1,6 +1,6 @@
 # Top Post Reddit
 
-Projeto que recupera o top post do dia do subreddit Today I Learned e envia para o Pocket
+Projeto que recupera os top posts do dia dos subreddits da variavel **subreddit_list** e envia para o Pocket
 
 ## Requisitos
 
